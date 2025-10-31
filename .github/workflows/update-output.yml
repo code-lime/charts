@@ -1,0 +1,32 @@
+name: Update Output
+
+on:
+  schedule:
+  - cron: "0 * * * *"
+  workflow_dispatch:
+  push:
+    paths-ignore:
+      - "output/**"
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Setup .NET 10
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "10.0.x"
+
+      - name: Run generation
+        run: |
+          dotnet run Charts.cs
+
+      - name: Commit updated
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: Update output
