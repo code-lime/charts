@@ -20,14 +20,11 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Setup .NET 10
-        uses: actions/setup-dotnet@v4
-        with:
-          dotnet-version: "10.0.x"
-
       - name: Run generation
-        run: |
-          dotnet run Charts.cs
+        uses: code-lime/bstats-chart@v0.0.1
+        with:
+          plugin-id: 26312
+          output-file: 'output/bstats/velocircon.png'
 
       - name: Commit updated
         uses: stefanzweifel/git-auto-commit-action@v5
