@@ -21,7 +21,7 @@ jobs:
           persist-credentials: true
 
       - name: Run generation
-        uses: code-lime/bstats-chart@v0.0.1
+        uses: code-lime/bstats-chart@v0.0.2
         with:
           plugin-id: 26312
           output-file: 'output/bstats/velocircon.png'
